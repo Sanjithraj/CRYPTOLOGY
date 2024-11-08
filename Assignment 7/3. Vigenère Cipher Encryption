@@ -1,0 +1,14 @@
+def vigenere_encrypt(message, keyword):
+    message = message.replace(" ", "").upper()
+    keyword = (keyword * (len(message) // len(keyword) + 1)).upper()
+    encrypted_text = ""
+    for m, k in zip(message, keyword):
+        encrypted_char = chr(((ord(m) - ord('A') + ord(k) - ord('A')) % 26) + ord('A'))
+        encrypted_text += encrypted_char
+    return encrypted_text
+
+# Example usage
+message = "She is listening"
+keyword = "PASCAL"
+ciphertext = vigenere_encrypt(message, keyword)
+print(f"Vigenère Encrypted message: {ciphertext}")

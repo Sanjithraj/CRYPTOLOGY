@@ -2,7 +2,7 @@ from collections import defaultdict
 
 def kasiski_test(cipher_text):
     sequences = defaultdict(list)
-    # Look for repeated sequences of 3 or more characters
+
     for length in range(3, len(cipher_text) // 2):
         for i in range(len(cipher_text) - length):
             seq = cipher_text[i:i + length]
@@ -10,11 +10,11 @@ def kasiski_test(cipher_text):
                 if cipher_text[j:j + length] == seq:
                     sequences[seq].append(j - i)
 
-    # Output repeated sequences and their distances
+    
     for seq, distances in sequences.items():
         if len(distances) > 1:
             print(f"Sequence: {seq}, Distances: {distances}")
 
-# Example usage
+
 cipher_text = "XPALASXYFGFUKPXUSOGEUTKCDGFXANMGNVS"
 kasiski_test(cipher_text)

@@ -1,11 +1,11 @@
 def double_columnar_transposition_encrypt(message, keyword1, keyword2):
-    # First columnar transposition
+   
     first_pass = columnar_transposition_encrypt(message, keyword1)
-    # Second columnar transposition on the result of the first pass
+   
     ciphertext = columnar_transposition_encrypt(first_pass, keyword2)
     return ciphertext
 
-# Example usage
+
 message = "She is listening"
 keyword1 = "FIRST"
 keyword2 = "SECOND"

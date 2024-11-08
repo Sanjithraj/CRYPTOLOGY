@@ -7,7 +7,7 @@ def vigenere_encrypt(message, keyword):
         encrypted_text += encrypted_char
     return encrypted_text
 
-# Example usage
+
 message = "She is listening"
 keyword = "PASCAL"
 ciphertext = vigenere_encrypt(message, keyword)

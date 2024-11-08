@@ -5,16 +5,16 @@ import math
 def columnar_transposition_encrypt(message, keyword):
     columns = len(keyword)
     rows = math.ceil(len(message) / columns)
-    # Pad message to fill out the matrix
+  
     padded_message = message + 'X' * (rows * columns - len(message))
-    # Create the matrix row by row
+  
     matrix = [padded_message[i:i + columns] for i in range(0, len(padded_message), columns)]
-    # Sort columns by keyword order and read column-wise
+  
     sorted_columns = sorted(range(columns), key=lambda k: keyword[k])
     ciphertext = ''.join(''.join(row[i] for row in matrix) for i in sorted_columns)
     return ciphertext
 
-# Example usage
+
 message = "She is listening"
 keyword = "KEYWORD"
 ciphertext = columnar_transposition_encrypt(message.replace(" ", "").upper(), keyword.upper())

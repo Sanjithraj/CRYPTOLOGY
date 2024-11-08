@@ -1,0 +1,16 @@
+Linear Feedback Shift Registers (LFSRs) are widely used in cryptography, particularly in stream ciphers, due to their simplicity and efficiency. However, they are vulnerable to several attacks, primarily due to their predictable linear structure. Here is a summary of common attacks on LFSR-based systems, with a detailed focus on the Berlekamp-Massey Attack.
+
+Common Attacks on LFSRs
+Berlekamp-Massey Algorithm: Used to reconstruct the LFSR polynomial from a known output sequence.
+Correlation Attacks: Exploit statistical correlations between the output sequence and the LFSR's internal state.
+Algebraic Attacks: Use algebraic equations to solve for the LFSR’s state.
+Time-Memory Tradeoff Attacks: Store LFSR states and outputs in memory to reduce the time required to break the sequence.
+Berlekamp-Massey Attack
+The Berlekamp-Massey Algorithm is one of the most well-known attacks on LFSRs. It’s an efficient method for finding the shortest LFSR that can generate a given binary sequence.
+
+Purpose: The algorithm is designed to determine the minimal polynomial of the LFSR based on its output.
+Process: Given a sequence of output bits, the Berlekamp-Massey algorithm iteratively calculates the feedback polynomial for an LFSR of minimal length that can reproduce the sequence.
+Result: Once the feedback polynomial and initial state are identified, the attacker can generate the entire sequence and potentially decrypt encrypted data.
+Example Scenario: If an attacker captures a long enough output sequence from an LFSR-based cipher, they can apply the Berlekamp-Massey algorithm to determine the feedback polynomial. Once the feedback polynomial is known, they can recover the entire output sequence and potentially decrypt the message.
+
+The main weakness of LFSR-based systems exposed by this attack is the deterministic nature of LFSR sequences, which makes them unsuitable for cryptographic applications without additional non-linear complexity.

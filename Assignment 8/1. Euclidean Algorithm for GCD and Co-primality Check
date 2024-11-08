@@ -1,0 +1,16 @@
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def check_coprime(a, b):
+    result_gcd = gcd(a, b)
+    if result_gcd == 1:
+        print(f"The numbers {a} and {b} are co-prime and suitable for cryptographic key generation.")
+    else:
+        print(f"The numbers {a} and {b} are not co-prime and are not suitable for cryptographic key generation.")
+
+
+a = int(input("Enter the first integer: "))
+b = int(input("Enter the second integer: "))
+check_coprime(a, b)

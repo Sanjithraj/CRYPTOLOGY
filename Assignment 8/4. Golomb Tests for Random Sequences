@@ -1,0 +1,28 @@
+def golomb_test(sequence):
+    n = len(sequence)
+
+  
+    count_0 = sequence.count('0')
+    count_1 = sequence.count('1')
+    test1 = abs(count_0 - count_1) <= 1
+    print(f"Test 1 - Balance: {'Pass' if test1 else 'Fail'} (0's: {count_0}, 1's: {count_1})")
+
+   
+    runs = [sequence[0]]
+    run_lengths = []
+    current_run = 1
+    for i in range(1, n):
+        if sequence[i] == sequence[i - 1]:
+            current_run += 1
+        else:
+            runs.append(sequence[i])
+            run_lengths.append(current_run)
+            current_run = 1
+    run_lengths.append(current_run)
+    expected_runs = [2 ** -r for r in range(1, len(run_lengths) + 1)]
+    test2 = len(set(run_lengths)) == 2
+    print(f"Test 2 - Runs: {'Pass' if test2 else 'Fail'} (Runs: {run_lengths})")
+
+   
+    test3 = not any(sequence.count(seq) > 1 for seq in run_lengths)
+    print(f"Test 3 - Large Patterns: {'Pass' if test3 else 'Fail'}")

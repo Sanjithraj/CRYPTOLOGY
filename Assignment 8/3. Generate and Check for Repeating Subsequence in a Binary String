@@ -1,0 +1,21 @@
+import random
+
+def generate_random_binary(length=100):
+    return ''.join(random.choice('01') for _ in range(length))
+
+def check_repeating_subsequence(binary_string):
+    length = len(binary_string)
+    for sub_len in range(1, length // 2 + 1):
+        seen = set()
+        for i in range(length - sub_len + 1):
+            subsequence = binary_string[i:i + sub_len]
+            if subsequence in seen:
+                print(f"Repeating subsequence found: {subsequence}")
+                return True
+            seen.add(subsequence)
+    print("No repeating subsequence found.")
+    return False
+
+binary_sequence = generate_random_binary()
+print(f"Generated binary sequence: {binary_sequence}")
+check_repeating_subsequence(binary_sequence)

@@ -1,0 +1,16 @@
+def xor_operation(bin1, bin2):
+    # Convert binary strings to integers
+    int1 = int(bin1, 2)
+    int2 = int(bin2, 2)
+    # Perform XOR and convert back to binary
+    result = bin(int1 ^ int2)[2:]
+    # Pad the result with leading zeros to match the length of inputs
+    max_len = max(len(bin1), len(bin2))
+    result = result.zfill(max_len)
+    return result
+
+# Example usage
+bin1 = input("Enter the first binary value: ")
+bin2 = input("Enter the second binary value: ")
+result = xor_operation(bin1, bin2)
+print(f"Result of XOR operation: {result}")

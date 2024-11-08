@@ -1,0 +1,19 @@
+def lfsr_simulation(initial_state, taps, steps=10):
+    state = [int(bit) for bit in initial_state]
+    n = len(state)
+    print("Initial State:", ''.join(map(str, state)))
+
+    for step in range(steps):
+        # XOR feedback bit (taps)
+        feedback = 0
+        for tap in taps:
+            feedback ^= state[n - tap]
+        
+        # Shift right and insert feedback at the leftmost position
+        state = [feedback] + state[:-1]
+        print(f"Step {step + 1}: {''.join(map(str, state))}")
+
+# Example usage
+initial_state = input("Enter initial 4-bit state (e.g., '1011'): ")
+taps = list(map(int, input("Enter tap positions as space-separated integers (e.g., '4 3'): ").split()))
+lfsr_simulation(initial_state, taps)

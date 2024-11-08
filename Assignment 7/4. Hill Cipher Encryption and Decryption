@@ -27,7 +27,7 @@ def hill_decrypt(encrypted_text, key_matrix):
 
     return decrypted_text
 
-# Example usage
+
 key_matrix = np.array([[6, 24, 1], [13, 16, 10], [20, 17, 15]])  # Example key matrix
 message = "ACT"
 encrypted_message = hill_encrypt(message, key_matrix)

@@ -1,0 +1,22 @@
+def extended_gcd(a, b):
+    if a == 0:
+        return b, 0, 1
+    gcd, x1, y1 = extended_gcd(b % a, a)
+    x = y1 - (b // a) * x1
+    y = x1
+    return gcd, x, y
+
+def modular_inverse(n, m):
+    gcd, x, _ = extended_gcd(n, m)
+    if gcd != 1:
+        print(f"No modular inverse exists for {n} modulo {m}.")
+        return None
+    else:
+        inverse = x % m
+        print(f"The modular inverse of {n} modulo {m} is {inverse}.")
+        return inverse
+
+
+n = int(input("Enter the number (n): "))
+m = int(input("Enter the modulo (m): "))
+modular_inverse(n, m)

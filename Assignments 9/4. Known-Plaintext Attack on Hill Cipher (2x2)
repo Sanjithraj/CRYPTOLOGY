@@ -1,0 +1,25 @@
+import numpy as np
+from sympy import Matrix
+
+def text_to_matrix(text):
+    # Convert each character to a number (A=0, B=1, ..., Z=25)
+    return [ord(char) - ord('A') for char in text]
+
+def known_plaintext_attack(plaintext, ciphertext):
+    # Convert text to matrix form
+    P = np.array(text_to_matrix(plaintext)).reshape(2, 2)
+    C = np.array(text_to_matrix(ciphertext)).reshape(2, 2)
+    
+    # Find the inverse of the plaintext matrix modulo 26
+    P_inv = Matrix(P).inv_mod(26)
+    P_inv = np.array(P_inv).astype(int)
+    
+    # Calculate key matrix K as C * P_inv % 26
+    K = np.dot(C, P_inv) % 26
+    return K
+
+# Example usage
+plaintext = "MEET"
+ciphertext = "URRG"
+key_matrix = known_plaintext_attack(plaintext, ciphertext)
+print(f"Recovered key matrix:\n{key_matrix}")
